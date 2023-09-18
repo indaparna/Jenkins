@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    parameters{
+        string(defaultValue: "test", description: "custom Input", name: "stringParam")
+        choice(choices: ["EU-WEST-2A", "EU-WEST-2B", "EU-WEST-2C"], description: "choose AZ", name: "choiceParam")
+        booleanParam(defaultValue: false, description: "select the checkbox", name: "boolParam")
+    }
+
+    stages{
+        stage("Challenge 3"){
+            steps{
+                echo "Custom input is: ${params.stringParam}"
+                echo "Selected AZ is : ${params.choiceParam}"
+                echo "Checkbox is marked : ${params.boolParam}"
+            }
+        }
+    }
+}
