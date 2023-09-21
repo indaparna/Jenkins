@@ -1,0 +1,55 @@
+pipeline{
+
+    agent any
+
+    parameters{
+        string(defaultValue: "master", description: "Enter Branch Name", name: "s_Project_Branch_Name")
+        choice(choices: ["GoLive", "Production"], description: "Select Environment to deploy in?", name: "select_env")
+        choice(choices: ["ap-southeast-1", "ap-south-1"], description: "AWS Region for Deployment", name: "aws_region")
+        choice(choices: ["hg-non-prod-jenkins-artifact"], description: "Name of the S3 Bucket to upload the Artifacts", name: "s3_bucket_name")
+        choice(choices: ["AllAtOnce", "HalfAtATime", "OneAtATime"], description: "Deployment Strategy", name: "codeDeploy_deployment_configuration")
+    }
+
+    stages{
+        stage("build user"){
+            steps{
+                echo "Step 2"
+            }            
+        }
+        stage("Clean Up"){
+            steps{
+                echo "Step 3"
+            }
+        }
+        stage("Clone Repo"){
+            steps{
+                echo "Step 4"
+            }
+        }
+        stage("Update SSM Var"){
+            steps{
+                echo "Step 5"
+            }
+        }
+        stage("Upload Artifact"){
+            steps{
+                echo "Step 6"
+            }   
+        }
+        stage("Launch Deployment"){
+            steps{
+                echo "Step 7"
+            }
+        }
+        stage("Update Production SSM Parameter"){
+            steps{
+                echo "Step 8"
+            }
+        }
+        stage("Post Deployment Notification"){
+            steps{
+                echo "Step 9"
+            }
+        }
+    }
+}
